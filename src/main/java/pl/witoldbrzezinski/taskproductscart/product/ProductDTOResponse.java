@@ -1,6 +1,5 @@
 package pl.witoldbrzezinski.taskproductscart.product;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,11 +15,13 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class ProductDTOResponse {
-    private Long id;
-    private String title;
-    private BigDecimal price;
-    @Min(value = 0)
-    private Integer quantity;
-    private boolean isDeleted;
-    private Long version;
+  private Long id;
+  private String title;
+  private BigDecimal price;
+
+  @Min(value = 0)
+  private Integer quantity;
+
+  private boolean isDeleted;
+  private Long version;
 }
