@@ -21,35 +21,34 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="products")
+@Table(name = "products")
 @Where(clause = "is_deleted = false")
 public class ProductEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String title;
+  private String title;
 
-    private BigDecimal price;
+  private BigDecimal price;
 
-    private Integer quantity;
+  private Integer quantity;
 
-    private boolean isDeleted;
-    private final String uuid = UUID.randomUUID().toString();
-    @Version
-    private Long version;
+  private boolean isDeleted;
+  private final String uuid = UUID.randomUUID().toString();
+  @Version private Long version;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProductEntity that = (ProductEntity) o;
-        return Objects.equals(uuid, that.uuid);
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ProductEntity that = (ProductEntity) o;
+    return Objects.equals(uuid, that.uuid);
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(uuid);
+  }
 }
