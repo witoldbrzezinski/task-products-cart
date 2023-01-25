@@ -6,11 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
+import pl.witoldbrzezinski.taskproductscart.cart.CartEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import java.math.BigDecimal;
@@ -40,6 +42,9 @@ public class ProductEntity {
   private boolean isDeleted;
   private final String uuid = UUID.randomUUID().toString();
   @Version private Long version;
+
+  @ManyToOne
+  private CartEntity cart;
 
   @Override
   public boolean equals(Object o) {

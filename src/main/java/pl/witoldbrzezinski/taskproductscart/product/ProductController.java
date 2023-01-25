@@ -27,7 +27,7 @@ public class ProductController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ProductDTOResponse add(@RequestBody ProductDTORequest productDTORequest) {
+  public ProductDTOResponse add(@Valid @RequestBody ProductDTORequest productDTORequest) {
     return productService.add(productDTORequest);
   }
 
@@ -40,7 +40,7 @@ public class ProductController {
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(
-            @PathVariable Long id,  @RequestBody ProductDTORequest productDTORequest) {
+            @PathVariable Long id, @Valid @RequestBody ProductDTORequest productDTORequest) {
         productService.update(id, productDTORequest);
     }
 

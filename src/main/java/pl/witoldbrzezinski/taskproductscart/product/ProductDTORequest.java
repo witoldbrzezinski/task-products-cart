@@ -21,8 +21,8 @@ public class ProductDTORequest {
 
   @NotNull private String title;
   @NotNull private BigDecimal price;
-
+  @Min(0)
   @NotNull
-  @Min(value = 0)
   private Integer quantity;
+
 }
