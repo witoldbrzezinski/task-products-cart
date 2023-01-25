@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,11 +27,20 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public void remove(Long id) {}
+  @Transactional
+  public void remove(Long id) {
+    ProductEntity productEntity = findProduct(id);
+    productEntity.setDeleted(true);
+  }
 
   @Override
+  @Transactional
   public ProductDTOResponse update(Long id, ProductDTORequest productDTORequest) {
-    return null;
+    ProductEntity productEntity = findProduct(id);
+    productEntity.setTitle(productDTORequest.getTitle());
+    productEntity.setPrice(productDTORequest.getPrice());
+    productEntity.setQuantity(productDTORequest.getQuantity());
+    return productMapper.toDTO(productEntity);
   }
 
   @Override
