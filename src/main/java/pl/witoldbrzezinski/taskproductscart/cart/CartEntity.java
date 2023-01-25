@@ -1,10 +1,13 @@
 package pl.witoldbrzezinski.taskproductscart.cart;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 import pl.witoldbrzezinski.taskproductscart.product.ProductEntity;
 
 import javax.persistence.CascadeType;
@@ -12,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -28,6 +32,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Where(clause = "is_deleted = false")
 public class CartEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +43,8 @@ public class CartEntity {
   private final String uuid = UUID.randomUUID().toString();
   @Version private Long version;
 
-  @OneToMany(mappedBy = "cart", cascade = CascadeType.MERGE)
+  @ManyToMany(mappedBy = "carts")
+  @JsonBackReference
   private List<ProductEntity> products = new ArrayList<>();
 
   @Override
@@ -55,12 +61,12 @@ public class CartEntity {
   }
 
   public void addProduct(ProductEntity product) {
-    product.setCart(this);
-    products.add(product);
+    this.products.add(product);
+    product.getCarts().add(this);
   }
 
   public void removeProduct(ProductEntity product) {
-    product.setCart(null);
-    products.remove(product);
+   this.products.remove(product);
+   product.getCarts().remove(this);
   }
 }

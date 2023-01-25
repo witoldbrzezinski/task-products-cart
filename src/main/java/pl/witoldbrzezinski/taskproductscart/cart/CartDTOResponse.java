@@ -1,5 +1,6 @@
 package pl.witoldbrzezinski.taskproductscart.cart;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -23,6 +24,8 @@ public class CartDTOResponse {
     private Long id;
     private BigDecimal value;
     private boolean isDeleted;
-    private Long version;
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private List<ProductEntity> products = new ArrayList<>();
+
 }
