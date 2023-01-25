@@ -11,19 +11,17 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class ProductExceptionHandler {
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<HandledApiError> handleProductNotFoundException(
-            ProductNotFoundException exception) {
-        return new ResponseEntity<>(
-                new HandledApiError(LocalDateTime.now(), exception.getMessage()),
-                HttpStatus.NOT_FOUND);
-    }
+  @ExceptionHandler(ProductNotFoundException.class)
+  public ResponseEntity<HandledApiError> handleProductNotFoundException(
+      ProductNotFoundException exception) {
+    return new ResponseEntity<>(
+        new HandledApiError(LocalDateTime.now(), exception.getMessage()), HttpStatus.NOT_FOUND);
+  }
 
-    @ExceptionHandler(ProductAlreadyExistsException.class)
-    public ResponseEntity<HandledApiError> handleProductAlreadyExistsException(
-            ProductAlreadyExistsException exception) {
-        return new ResponseEntity<>(
-                new HandledApiError(LocalDateTime.now(), exception.getMessage()),
-                HttpStatus.CONFLICT);
-    }
+  @ExceptionHandler(ProductAlreadyExistsException.class)
+  public ResponseEntity<HandledApiError> handleProductAlreadyExistsException(
+      ProductAlreadyExistsException exception) {
+    return new ResponseEntity<>(
+        new HandledApiError(LocalDateTime.now(), exception.getMessage()), HttpStatus.CONFLICT);
+  }
 }

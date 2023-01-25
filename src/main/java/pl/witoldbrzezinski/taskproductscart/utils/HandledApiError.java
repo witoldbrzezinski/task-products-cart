@@ -5,11 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class HandledApiError {
 
-    private LocalDateTime localDateTime;
-    private String message;
+  private LocalDateTime localDateTime;
+  private String message;
 }

@@ -37,12 +37,12 @@ public class ProductController {
     productService.remove(id);
   }
 
-    @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void update(
-            @PathVariable Long id, @Valid @RequestBody ProductDTORequest productDTORequest) {
-        productService.update(id, productDTORequest);
-    }
+  @PutMapping("{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public void update(
+      @PathVariable Long id, @Valid @RequestBody ProductDTORequest productDTORequest) {
+    productService.update(id, productDTORequest);
+  }
 
   @GetMapping
   public List<ProductDTOResponse> getAll(

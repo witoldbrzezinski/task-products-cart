@@ -29,38 +29,38 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class CartEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private BigDecimal value;
-    private boolean isDeleted;
-    private final String uuid = UUID.randomUUID().toString();
-    @Version
-    private Long version;
-    @OneToMany(mappedBy="cart",cascade = CascadeType.MERGE)
-    private List<ProductEntity> products = new ArrayList<>();
+  private BigDecimal value;
+  private boolean isDeleted;
+  private final String uuid = UUID.randomUUID().toString();
+  @Version private Long version;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CartEntity that = (CartEntity) o;
-        return Objects.equals(uuid, that.uuid);
-    }
+  @OneToMany(mappedBy = "cart", cascade = CascadeType.MERGE)
+  private List<ProductEntity> products = new ArrayList<>();
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    CartEntity that = (CartEntity) o;
+    return Objects.equals(uuid, that.uuid);
+  }
 
-    public void addProduct(ProductEntity product){
-        product.setCart(this);
-        products.add(product);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(uuid);
+  }
 
-    public void removeProduct(ProductEntity product){
-        product.setCart(null);
-        products.remove(product);
-    }
+  public void addProduct(ProductEntity product) {
+    product.setCart(this);
+    products.add(product);
+  }
+
+  public void removeProduct(ProductEntity product) {
+    product.setCart(null);
+    products.remove(product);
+  }
 }

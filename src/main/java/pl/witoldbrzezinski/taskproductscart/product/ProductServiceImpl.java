@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public ProductDTOResponse add(ProductDTORequest productDTORequest) {
-    if (productRepository.existsByTitle(productDTORequest.getTitle())){
+    if (productRepository.existsByTitle(productDTORequest.getTitle())) {
       throw new ProductAlreadyExistsException(productDTORequest.getTitle());
     }
     ProductEntity productEntity = productMapper.toEntity(productDTORequest);

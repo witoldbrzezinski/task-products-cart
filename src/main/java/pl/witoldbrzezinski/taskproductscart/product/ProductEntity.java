@@ -43,8 +43,7 @@ public class ProductEntity {
   private final String uuid = UUID.randomUUID().toString();
   @Version private Long version;
 
-  @ManyToOne
-  private CartEntity cart;
+  @ManyToOne private CartEntity cart;
 
   @Override
   public boolean equals(Object o) {
