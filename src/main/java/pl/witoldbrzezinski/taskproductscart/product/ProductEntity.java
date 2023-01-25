@@ -1,6 +1,7 @@
 package pl.witoldbrzezinski.taskproductscart.product;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "products")
 @Where(clause = "is_deleted = false")
 public class ProductEntity {
