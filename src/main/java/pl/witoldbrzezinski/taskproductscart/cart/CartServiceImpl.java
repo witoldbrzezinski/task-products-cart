@@ -68,10 +68,7 @@ public class CartServiceImpl implements CartService {
   @Override
   public List<ProductDTOResponse> getAllProductsFromCart(Long cartId) {
     CartEntity cartEntity = findCart(cartId);
-    return cartEntity.getProducts().stream()
-            .map(productMapper::toDTO)
-            .collect(Collectors.toList());
-
+    return cartEntity.getProducts().stream().map(productMapper::toDTO).collect(Collectors.toList());
   }
 
   @Override

@@ -21,11 +21,8 @@ import java.util.List;
 @EqualsAndHashCode
 public class CartDTOResponse {
 
-    private Long id;
-    private BigDecimal totalPrice;
-    private boolean isDeleted;
-    @EqualsAndHashCode.Exclude
-    @JsonIgnore
-    private List<ProductEntity> products = new ArrayList<>();
-
+  private Long id;
+  private BigDecimal totalPrice;
+  private boolean isDeleted;
+  @EqualsAndHashCode.Exclude @JsonIgnore private List<ProductEntity> products = new ArrayList<>();
 }

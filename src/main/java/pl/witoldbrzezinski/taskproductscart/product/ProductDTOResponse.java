@@ -20,8 +20,9 @@ public class ProductDTOResponse {
   private Long id;
   private String title;
   private BigDecimal price;
+
   @Min(0)
   private Integer quantity;
-  private boolean isDeleted;
 
+  private boolean isDeleted;
 }

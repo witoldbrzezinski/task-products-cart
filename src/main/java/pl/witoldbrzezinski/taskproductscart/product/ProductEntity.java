@@ -11,14 +11,12 @@ import pl.witoldbrzezinski.taskproductscart.cart.CartEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import java.math.BigDecimal;
@@ -52,10 +50,9 @@ public class ProductEntity {
 
   @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   @JoinTable(
-          name = "products_carts",
-          joinColumns =  @JoinColumn(name = "product_id"),
-          inverseJoinColumns = @JoinColumn(name="cart_id")
-  )
+      name = "products_carts",
+      joinColumns = @JoinColumn(name = "product_id"),
+      inverseJoinColumns = @JoinColumn(name = "cart_id"))
   @JsonManagedReference
   private List<CartEntity> carts;
 

@@ -4,8 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pl.witoldbrzezinski.taskproductscart.product.ProductAlreadyExistsException;
-import pl.witoldbrzezinski.taskproductscart.product.ProductNotFoundException;
 import pl.witoldbrzezinski.taskproductscart.utils.HandledApiError;
 
 import java.time.LocalDateTime;
@@ -29,8 +27,8 @@ public class CartExceptionHandler {
 
   @ExceptionHandler(CartTooLargeException.class)
   public ResponseEntity<HandledApiError> handleTooLargeCartException(
-          CartTooLargeException exception) {
+      CartTooLargeException exception) {
     return new ResponseEntity<>(
-            new HandledApiError(LocalDateTime.now(), exception.getMessage()), HttpStatus.CONFLICT);
+        new HandledApiError(LocalDateTime.now(), exception.getMessage()), HttpStatus.CONFLICT);
   }
 }

@@ -8,10 +8,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CartMapper {
 
-    private final ModelMapper modelMapper;
+  private final ModelMapper modelMapper;
 
-    CartDTOResponse toDTO(CartEntity cartEntity) {
-        return modelMapper.map(cartEntity, CartDTOResponse.class);
-    }
-
+  CartDTOResponse toDTO(CartEntity cartEntity) {
+    return modelMapper.map(cartEntity, CartDTOResponse.class);
+  }
 }
