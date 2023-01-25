@@ -26,4 +26,11 @@ public class CartExceptionHandler {
     return new ResponseEntity<>(
         new HandledApiError(LocalDateTime.now(), exception.getMessage()), HttpStatus.CONFLICT);
   }
+
+  @ExceptionHandler(CartTooLargeException.class)
+  public ResponseEntity<HandledApiError> handleTooLargeCartException(
+          CartTooLargeException exception) {
+    return new ResponseEntity<>(
+            new HandledApiError(LocalDateTime.now(), exception.getMessage()), HttpStatus.CONFLICT);
+  }
 }

@@ -10,11 +10,11 @@ public class ProductMapper {
 
   private final ModelMapper modelMapper;
 
-  ProductDTOResponse toDTO(ProductEntity productEntity) {
+  public ProductDTOResponse toDTO(ProductEntity productEntity) {
     return modelMapper.map(productEntity, ProductDTOResponse.class);
   }
 
-  ProductEntity toEntity(ProductDTORequest productDTORequest) {
+  public ProductEntity toEntity(ProductDTORequest productDTORequest) {
     return modelMapper.map(productDTORequest, ProductEntity.class);
   }
 }

@@ -1,6 +1,7 @@
 package pl.witoldbrzezinski.taskproductscart.cart;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,7 +39,7 @@ public class CartEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private BigDecimal value;
+  private BigDecimal totalPrice;
   private boolean isDeleted;
   private final String uuid = UUID.randomUUID().toString();
   @Version private Long version;

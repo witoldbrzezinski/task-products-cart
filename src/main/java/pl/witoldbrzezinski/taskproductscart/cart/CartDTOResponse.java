@@ -22,7 +22,7 @@ import java.util.List;
 public class CartDTOResponse {
 
     private Long id;
-    private BigDecimal value;
+    private BigDecimal totalPrice;
     private boolean isDeleted;
     @EqualsAndHashCode.Exclude
     @JsonIgnore

@@ -1,7 +1,9 @@
 package pl.witoldbrzezinski.taskproductscart.cart;
 
+import pl.witoldbrzezinski.taskproductscart.product.ProductDTOResponse;
 import pl.witoldbrzezinski.taskproductscart.product.ProductEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CartService {
@@ -12,6 +14,8 @@ public interface CartService {
 
     CartDTOResponse removeProduct(Long cartId, Long productId);
 
-    List<ProductEntity> getAllProductsFromCart(Long cartId);
+    List<ProductDTOResponse> getAllProductsFromCart(Long cartId);
+
+   BigDecimal getCartTotalValue(Long cartId);
 
 }

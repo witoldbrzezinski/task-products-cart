@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.witoldbrzezinski.taskproductscart.product.ProductDTOResponse;
 import pl.witoldbrzezinski.taskproductscart.product.ProductEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -40,9 +42,13 @@ public class CartController {
 
     @GetMapping("/{cartId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductEntity> getProductsFromCart(@PathVariable Long cartId){
+    public List<ProductDTOResponse> getProductsFromCart(@PathVariable Long cartId){
         return cartService.getAllProductsFromCart(cartId);
     }
-
+    @GetMapping("/{cartId}/calculate")
+    @ResponseStatus(HttpStatus.OK)
+    public BigDecimal getCartTotalValue(@PathVariable Long cartId){
+        return cartService.getCartTotalValue(cartId);
+    }
 
 }
