@@ -60,7 +60,7 @@ class CartServiceImplTest {
 
   @Test
   void shouldAddProductToCart() {
-    //given
+    // given
     CartEntity cartEntity =
         CartEntity.builder()
             .id(SAMPLE_CART_ID)
@@ -87,7 +87,7 @@ class CartServiceImplTest {
 
   @Test
   void shouldNotAddProductToCartWhenSizeIsExceeded() {
-    //given
+    // given
     CartEntity cartEntity =
         CartEntity.builder()
             .id(SAMPLE_CART_ID)
@@ -116,7 +116,7 @@ class CartServiceImplTest {
 
   @Test
   void shouldRemoveProductToCart() {
-  //given
+    // given
     ProductEntity productEntity =
         ProductEntity.builder()
             .id(SAMPLE_PRODUCT_ID)
@@ -143,7 +143,7 @@ class CartServiceImplTest {
 
   @Test
   void shouldNotRemoveProductThatIsNotInACart() {
-    //given
+    // given
     ProductEntity productEntity =
         ProductEntity.builder()
             .id(SAMPLE_PRODUCT_ID)
@@ -168,51 +168,54 @@ class CartServiceImplTest {
   }
 
   @Test
-  void shouldReturnListOfProductsFromCart(){
+  void shouldReturnListOfProductsFromCart() {
     ProductEntity productEntity =
-            ProductEntity.builder()
-                    .id(SAMPLE_PRODUCT_ID)
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .carts(new ArrayList<>())
-                    .build();
+        ProductEntity.builder()
+            .id(SAMPLE_PRODUCT_ID)
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .carts(new ArrayList<>())
+            .build();
     CartEntity cartEntity =
-            CartEntity.builder()
-                    .id(SAMPLE_CART_ID)
-                    .totalPrice(PRICE_ZER0)
-                    .products(new ArrayList<>())
-                    .build();
+        CartEntity.builder()
+            .id(SAMPLE_CART_ID)
+            .totalPrice(PRICE_ZER0)
+            .products(new ArrayList<>())
+            .build();
     cartEntity.addProduct(productEntity);
     // when
     when(productRepository.findById(SAMPLE_PRODUCT_ID)).thenReturn(Optional.of(productEntity));
     when(cartRepository.findById(SAMPLE_CART_ID)).thenReturn(Optional.of(cartEntity));
-    //then
-    assertThat(cartService.getAllProductsFromCart(SAMPLE_CART_ID).get(0)).usingRecursiveComparison().isEqualTo(productMapper.toDTO(productEntity));
+    // then
+    assertThat(cartService.getAllProductsFromCart(SAMPLE_CART_ID).get(0))
+        .usingRecursiveComparison()
+        .isEqualTo(productMapper.toDTO(productEntity));
   }
 
   @Test
-  void shouldReturnCartTotalPrice(){
+  void shouldReturnCartTotalPrice() {
     ProductEntity productEntity =
-            ProductEntity.builder()
-                    .id(SAMPLE_PRODUCT_ID)
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .carts(new ArrayList<>())
-                    .build();
+        ProductEntity.builder()
+            .id(SAMPLE_PRODUCT_ID)
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .carts(new ArrayList<>())
+            .build();
     CartEntity cartEntity =
-            CartEntity.builder()
-                    .id(SAMPLE_CART_ID)
-                    .totalPrice(PRICE_ZER0)
-                    .products(new ArrayList<>())
-                    .build();
+        CartEntity.builder()
+            .id(SAMPLE_CART_ID)
+            .totalPrice(PRICE_ZER0)
+            .products(new ArrayList<>())
+            .build();
     cartEntity.addProduct(productEntity);
     // when
     when(productRepository.findById(SAMPLE_PRODUCT_ID)).thenReturn(Optional.of(productEntity));
     when(cartRepository.findById(SAMPLE_CART_ID)).thenReturn(Optional.of(cartEntity));
-    when(cartService.addProduct(SAMPLE_CART_ID,SAMPLE_PRODUCT_ID)).thenReturn(cartMapper.toDTO(cartEntity));
-    //then
-    assertEquals(cartService.getCartTotalValue(SAMPLE_CART_ID),SAMPLE_PRICE);
+    when(cartService.addProduct(SAMPLE_CART_ID, SAMPLE_PRODUCT_ID))
+        .thenReturn(cartMapper.toDTO(cartEntity));
+    // then
+    assertEquals(cartService.getCartTotalValue(SAMPLE_CART_ID), SAMPLE_PRICE);
   }
 }

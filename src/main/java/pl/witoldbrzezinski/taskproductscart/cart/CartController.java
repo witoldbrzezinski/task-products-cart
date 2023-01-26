@@ -35,7 +35,7 @@ public class CartController {
   }
 
   @DeleteMapping("/{cartId}/products/{productId}")
-  @ResponseStatus(HttpStatus.OK)
+  @ResponseStatus(HttpStatus.NO_CONTENT)
   public CartDTOResponse removeProduct(@PathVariable Long cartId, @PathVariable Long productId) {
     return cartService.removeProduct(cartId, productId);
   }

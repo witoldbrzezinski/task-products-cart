@@ -46,14 +46,14 @@ class ProductIntegrationTest extends IntegrationTestDB {
             .price(SAMPLE_PRICE)
             .quantity(SAMPLE_QUANTITY)
             .build();
-      // when//then
-      mockMvc
-              .perform(
-                      post("/products")
-                              .contentType(MediaType.APPLICATION_JSON)
-                              .content(objectMapper.writeValueAsString(productDTORequest)))
-              .andExpect(status().isCreated())
-              .andReturn();
+    // when//then
+    mockMvc
+        .perform(
+            post("/products")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(productDTORequest)))
+        .andExpect(status().isCreated())
+        .andReturn();
   }
 
   @Test
@@ -61,12 +61,12 @@ class ProductIntegrationTest extends IntegrationTestDB {
   void shouldRemoveProduct() {
     // given
     ProductEntity productEntity =
-            ProductEntity.builder()
-                    .id(SAMPLE_ID)
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .build();
+        ProductEntity.builder()
+            .id(SAMPLE_ID)
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .build();
     productRepository.save(productEntity);
     // when then
     mockMvc.perform(delete("/products/1")).andExpect(status().isNoContent());
@@ -74,67 +74,67 @@ class ProductIntegrationTest extends IntegrationTestDB {
 
   @Test
   @SneakyThrows
-  void shouldUpdateProduct(){
-    //given
+  void shouldUpdateProduct() {
+    // given
     ProductEntity productEntity =
-            ProductEntity.builder()
-                    .id(SAMPLE_ID)
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .build();
+        ProductEntity.builder()
+            .id(SAMPLE_ID)
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .build();
     productRepository.save(productEntity);
     ProductDTORequest productDTORequest =
-            ProductDTORequest.builder()
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .build();
+        ProductDTORequest.builder()
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .build();
     mockMvc
-            .perform(
-                    put("/products/1")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(productDTORequest)))
-            .andExpect(status().isOk())
-            .andReturn();
+        .perform(
+            put("/products/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(productDTORequest)))
+        .andExpect(status().isOk())
+        .andReturn();
   }
 
   @Test
   @SneakyThrows
-  void shouldGetAllProducts(){
-    //given
+  void shouldGetAllProducts() {
+    // given
     ProductDTORequest productDTORequest =
-            ProductDTORequest.builder()
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .build();
+        ProductDTORequest.builder()
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .build();
     ProductEntity productEntity =
-            ProductEntity.builder()
-                    .id(SAMPLE_ID)
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .build();
+        ProductEntity.builder()
+            .id(SAMPLE_ID)
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .build();
     ProductDTOResponse productDTOResponse =
-            ProductDTOResponse.builder()
-                    .id(SAMPLE_ID)
-                    .title(SAMPLE_TITLE)
-                    .price(SAMPLE_PRICE)
-                    .quantity(SAMPLE_QUANTITY)
-                    .build();
+        ProductDTOResponse.builder()
+            .id(SAMPLE_ID)
+            .title(SAMPLE_TITLE)
+            .price(SAMPLE_PRICE)
+            .quantity(SAMPLE_QUANTITY)
+            .build();
     productRepository.save(productEntity);
     // when
     MvcResult result =
-            mockMvc
-                    .perform(
-                            get("/products")
-                                    .contentType(MediaType.APPLICATION_JSON)
-                                    .content(objectMapper.writeValueAsString(productDTORequest)))
-                    .andExpect(status().isOk())
-                    .andReturn();
+        mockMvc
+            .perform(
+                get("/products")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(productDTORequest)))
+            .andExpect(status().isOk())
+            .andReturn();
     // then
     assertThat(result.getResponse().getContentAsString())
-            .isEqualTo("[" + objectMapper.writeValueAsString(productDTOResponse) + "]");
-}
+        .isEqualTo("[" + objectMapper.writeValueAsString(productDTOResponse) + "]");
+  }
 }
